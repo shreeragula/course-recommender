@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommendation</title>
+    <style>
+        input[type="text"] {
+            width: 300px;  /* Increase width */
+            height: 30px;  /* Increase height */
+            font-size: 18px; /* Increase font size */
+            padding: 10px; /* Add padding for spacing */
+            border: 2px solid #333; /* Add border */
+            border-radius: 5px; /* Rounded corners */
+        }
+    
+        button {
+            width: 200px; /* Increase button width */
+            height: 30px; /* Increase button height */
+            font-size: 18px; /* Increase text size */
+            background-color: #007BFF; /* Button color */
+            color: white; /* Text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer effect */
+        }
+    
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='bg.jpg') }}'); background-size: cover; background-position: center;">
+    <center><h1 style="color: lemonchiffon;text-shadow:5;font-size: 50px;">Course Recomendation System</h1></center>
+    <h2 style="color: aliceblue;font-size: 30px;">Enter Course Name</h2>
+    <form method="post">
+        <input type="text" name="course_name" placeholder="Enter course name">
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <h2 style="color: aliceblue;font-size: 30px;" >Recommended Courses:</h2>
+    <ul>
+        {% for course in recommendations %}
+            <li>{{ course }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
