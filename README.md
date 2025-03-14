@@ -1,3 +1,5 @@
+ 
+
 ---
 
 ### **Altair RapidMiner Course Recommendation System**  
@@ -84,5 +86,7 @@ for rec in recommendations:
 
 ## **Contributing**  
 Feel free to contribute by submitting **pull requests** or **raising issues**.  
+
+---
 
 Let me know if you want to modify or add anything! 🚀
