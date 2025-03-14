@@ -1,5 +1,3 @@
-Here's a **README.md** file for your repository, covering the project details, setup instructions, and usage:  
-
 ---
 
 ### **Altair RapidMiner Course Recommendation System**  
