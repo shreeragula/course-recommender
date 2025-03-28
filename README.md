@@ -2,7 +2,7 @@
 
 ---
 
-### **Altair RapidMiner Course Recommendation System**  
+### **Course Recommendation System**  
 
 **Description**  
 This repository contains a machine-learning-based **Course Recommendation System** that helps users find relevant online courses based on their preferences. The model is built using **Python, Pandas, Scikit-learn, and Natural Language Processing (NLP)** techniques.  
