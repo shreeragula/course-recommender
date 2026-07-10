@@ -1,92 +1,113 @@
- 
+# CareerPath AI 🚀
+An AI-powered course recommender, career roadmap generator, interactive interview simulator, and study planner built with Flask, SQLite, and Gemini AI.
 
 ---
 
-### **Course Recommendation System**  
+## 🌟 Features
 
-**Description**  
-This repository contains a machine-learning-based **Course Recommendation System** that helps users find relevant online courses based on their preferences. The model is built using **Python, Pandas, Scikit-learn, and Natural Language Processing (NLP)** techniques.  
+### 1. 🔍 Personalized Course Recommendations
+* **Content-Based Filtering**: Leverages Natural Language Processing (NLP) and Cosine Similarity to compare user preferences (interests, skill level, and career goals) with thousands of courses.
+* **Smart Matching**: Suggests optimized custom study paths tailored to the user's available weekly hours and skill level (Beginner, Intermediate, Advanced).
 
----
+### 2. 🚀 AI Career Path Advisor
+* **Interactive Roadmap Generation**: Generates customized structured learning roadmaps directly using Gemini AI integration (`ai_advisor.py`).
+* **Visual Paths**: Provides logical progression timelines including suggested tech stacks, milestones, and actionable tips for entering any modern tech field.
 
-## **Features**  
-- Uses **cosine similarity** for recommending similar courses.  
-- Data preprocessing includes **text cleaning, stemming, and feature extraction**.  
-- Flask-based **API** for deploying the recommendation system.  
-- Dataset sourced from **Coursera** courses.  
+### 3. 💡 Interview Preparation Console
+* **Dynamic Simulations**: Simulates technical, behavioral/HR, or mixed interview sessions based on the user's chosen role, experience, and difficulty level.
+* **Dynamic AI Feedback**: Generates context-aware questions, analyzes user input, asks follow-up questions, and compiles a comprehensive evaluation report showing strengths, weaknesses, and expected answer keys.
 
----
+### 4. 📅 Study Planner & Timetable
+* **Stats Dashboard**: Interactive trackers showing Tasks Completed, Tasks Remaining, Current Streak, and Today's Goal completion rate.
+* **Multiple Views**: Seamlessly switch between **List View**, **Calendar View**, and an interactive **Weekly Timetable Grid**.
+* **Reminders**: Features custom priority labeling (High/Medium/Low), task categories, and local browser notifications for task reminders.
 
-## **Installation & Setup**  
-
-1. **Clone the repository**  
-   ```sh
-   git clone https://github.com/shreeragula/Altair_RapidMiner_Project.git
-   cd Altair_RapidMiner_Project
-   ```
-
-2. **Create a virtual environment (optional but recommended)**  
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**  
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-4. **Run the Flask app**  
-   ```sh
-   python app.py
-   ```
-
-5. **Access the API**  
-   Open your browser and go to:  
-   ```
-   http://127.0.0.1:5000/
-   ```
+### 5. 🌗 Premium Responsive UI
+* A highly optimized UI built with glassmorphic cards, smooth animations, and clean layouts.
+* Native **Dark Mode** and **Light Mode** toggles using persistent CSS styling and theme caching.
 
 ---
 
-## **Usage**  
+## 🛠️ Technologies Used
 
-### **Course Recommendation via Python Script**  
-You can use the following function from `ml_model.py` to get course recommendations:
+### Backend
+* **Python (Flask)**: Core server routing and logic.
+* **SQLite (with Database.py helper)**: Robust user authentication, encrypted passwords, stored preferences, bookmark logs, and completed interview histories.
+* **Gemini Pro (Google Generative AI)**: Powering the Career Roadmap Advisor and the dynamic Interview Simulator.
+* **Pandas / NumPy / Scikit-learn**: Sourced data pre-processing, Cosine Similarity matching, and TF-IDF numerical vectorization.
 
-```python
-from ml_model import recommend_course
+### Frontend
+* **HTML5 / CSS3 / JavaScript (ES6)**: Vanilla frontend with responsive layout design.
+* **CSS Grid / Flexbox**: Used for dynamic calendar, scheduler, and timetable.
+* **Google Fonts**: Plus Jakarta Sans.
 
-recommendations = recommend_course("Machine Learning")
-for rec in recommendations:
-    print(rec)
+---
+
+## 📂 Project Structure
+
+```text
+📦 course-recommender
+ ┣ 📂 templates
+ ┃ ┣ 📜 landing.html             # Landing page for guests
+ ┃ ┣ 📜 login.html               # Secure login form
+ ┃ ┣ 📜 signup.html              # Secure signup form
+ ┃ ┣ 📜 index.html               # Main dashboard (recommender, advisor, bookmarks)
+ ┃ ┣ 📜 interview_session.html   # Active mock interview screen
+ ┃ ┗ 📜 interview_summary.html   # Final AI feedback summary screen
+ ┣ 📂 static
+ ┃ ┣ 📜 planner.js               # Study planner interactive operations
+ ┃ ┣ 📜 theme.css                # Color schemes for light & dark mode overrides
+ ┃ ┣ 📜 theme.js                 # Theme toggler implementation
+ ┃ ┗ 📜 bg.jpg                   # Glassmorphic background texture
+ ┣ 📜 app.py                     # Flask server routes & application entry point
+ ┣ 📜 ml_model.py                # Cosine Similarity course recommendation logic
+ ┣ 📜 ai_advisor.py              # Gemini AI integration for roadmap generation
+ ┣ 📜 database.py                # SQLite database management helper
+ ┣ 📜 interview_ai.py            # Interview session logic & prompts
+ ┣ 📜 Coursera.csv               # Dataset containing coursera course metadata
+ ┣ 📜 course_embeddings.npy      # Pre-computed vectors for search recommendations
+ ┣ 📜 recommender.db             # Local SQLite database file
+ ┣ 📜 requirements.txt           # Python application dependencies
+ ┗ 📜 README.md                  # Project documentation (this file)
 ```
 
 ---
 
-## **Project Structure**  
-```
-📦 Altair_RapidMiner_Project
- ┣ 📜 app.py            # Flask web API for course recommendations
- ┣ 📜 ml_model.py       # ML model implementation
- ┣ 📜 Coursera.csv      # Dataset with course details
- ┣ 📜 requirements.txt  # List of required Python packages
- ┣ 📜 sorce_code.ipynb  # Jupyter Notebook with model training
- ┗ 📜 README.md         # Project documentation
+## 🚀 Installation & Setup
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/shreeragula/course-recommender.git
+cd course-recommender
 ```
 
----
+### 2. Set up virtual environment
+```sh
+python -m venv venv
+# On Windows use:
+venv\Scripts\activate
+# On Linux/macOS use:
+source venv/bin/activate
+```
 
-## **Technologies Used**  
-- **Python (Flask, Pandas, Scikit-learn, NLTK, Matplotlib, Seaborn)**  
-- **NLP Techniques (Stemming, Tokenization, TF-IDF Vectorization)**  
-- **Machine Learning (Cosine Similarity-based Recommendation System)**  
+### 3. Install dependencies
+```sh
+pip install -r requirements.txt
+```
 
----
+### 4. Set your API Key
+The AI features require a Gemini API Key. Set it in your environment:
+```sh
+# On Windows (Command Prompt):
+set GEMINI_API_KEY="your_api_key_here"
+# On Windows (PowerShell):
+$env:GEMINI_API_KEY="your_api_key_here"
+# On Linux/macOS:
+export GEMINI_API_KEY="your_api_key_here"
+```
 
-## **Contributing**  
-Feel free to contribute by submitting **pull requests** or **raising issues**.  
-
----
-
-Let me know if you want to modify or add anything! 🚀
+### 5. Start the Application
+```sh
+python app.py
+```
+Open your browser and navigate to `http://127.0.0.1:5000/` to start using the system.
