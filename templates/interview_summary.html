@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Interview Report - CareerPath AI</title>
+    <!-- Import Google Fonts (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Import Chart.js for dashboard charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #10b981;
+            --bg-dark: var(--bg-dark-base);
+            --card-bg: rgba(17, 24, 39, 0.45);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: var(--text-primary);
+            --text-muted: var(--text-secondary);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-dark-base);
+            color: var(--text-main);
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .scores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .score-box {
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+        .score-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .score-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .overall-score-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #d1d5db;
+        }
+        .list-item i { color: var(--accent); font-style: normal; }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .course-card {
+            background: var(--card-hover);
+            border: 1px solid var(--border-lighter);
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+        .course-card:hover { background: var(--border-lighter); }
+        .course-title { font-weight: 700; margin-bottom: 5px; color: #60a5fa; }
+        
+        .timeline {
+            border-left: 2px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        .timeline-step {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .btn-home {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 14px 36px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+    </style>
+    <link rel="stylesheet" href="/static/theme.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Final Interview Report</h1>
+            <p>Role: {{ record.role }} | Level: {{ record.experience_level }}</p>
+        </header>
+
+        {% if record.report %}
+        <div class="dashboard-grid">
+            <!-- Left Column: Scores -->
+            <div class="card">
+                <div class="card-header">Performance Metrics</div>
+                
+                <div class="overall-score-container">
+                    <div style="position: relative; width: 150px; height: 150px;">
+                        <canvas id="overallChart"></canvas>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <span style="font-size: 2.2rem; font-weight: 800; color: var(--text-bright);">{{ record.report.overall_score }}</span><br>
+                            <span style="font-size: 0.7rem; color: var(--text-muted);">OVERALL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scores-grid">
+                    <div class="score-box">
+                        <div class="score-val" style="color: #60a5fa;">{{ record.report.technical_score }}</div>
+                        <div class="score-label">Technical</div>
+                    </div>
+                    <div class="score-box">
+                        <div class="score-val" style="color: #34d399;">{{ record.report.hr_score }}</div>
+                        <div class="score-label">HR / Fit</div>
+                    </div>
+                    <div class="score-box">
+                        <div class="score-val" style="color: #f472b6;">{{ record.report.coding_score }}</div>
+                        <div class="score-label">Coding</div>
+                    </div>
+                    <div class="score-box">
+                        <div class="score-val" style="color: #fbbf24;">{{ record.report.communication_score }}</div>
+                        <div class="score-label">Comm</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Feedback -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+                <div class="card">
+                    <div class="card-header" style="color: #34d399;">💪 Key Strengths</div>
+                    <div>
+                        {% for item in record.report.strengths %}
+                            <div class="list-item"><i>✔️</i> <span>{{ item }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="color: #f87171;">⚠️ Weak Areas</div>
+                    <div>
+                        {% for item in record.report.weak_areas %}
+                            <div class="list-item"><i>🚩</i> <span>{{ item }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" style="color: #a78bfa;">🎯 Topics to Revise</div>
+                    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                        {% for topic in record.report.topics_to_revise %}
+                            <span style="background: rgba(167, 139, 250, 0.15); border: 1px solid rgba(167, 139, 250, 0.3); color: #c4b5fd; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;">{{ topic }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Learning Resources -->
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="card-header">📚 General Recommended Resources</div>
+            <div>
+                {% for res in record.report.recommended_resources %}
+                    <div class="list-item"><i>📘</i> <span>{{ res }}</span></div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- ML Suggested Courses -->
+        {% if record.suggested_courses %}
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="card-header">🎓 AI-Curated Courses to fill gaps</div>
+            <div class="courses-grid">
+                {% for course in record.suggested_courses %}
+                    <a href="{{ course.url }}" target="_blank" class="course-card">
+                        <div class="course-title">{{ course.name }}</div>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">
+                            ⭐ {{ course.rating }} | 📊 {{ course.difficulty }}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- AI Roadmap Updates -->
+        {% if record.roadmap_updates and record.roadmap_updates.roadmap %}
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="card-header">🛤️ Personalized Study Roadmap</div>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:10px;">{{ record.roadmap_updates.advice }}</p>
+            <div class="timeline">
+                {% for step in record.roadmap_updates.roadmap %}
+                    <div class="timeline-step">
+                        <strong style="color: #60a5fa;">Stage {{ step.stage }}: {{ step.title }}</strong>
+                        <div style="font-size:0.85rem; color:var(--text-muted); margin-top:5px;">
+                            Topics: {{ step.skills | join(", ") }}<br>
+                            Duration: {{ step.duration }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Detailed Transcript History -->
+        <div class="card">
+            <div class="card-header">Detailed Transcript</div>
+            <div style="margin-top: 15px;">
+                {% for item in record.history %}
+                    <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius:12px; margin-bottom:15px; border:1px solid var(--border-light);">
+                        <strong style="color:var(--text-bright);">Q: {{ item.question }}</strong>
+                        <div style="color:var(--text-muted); font-size:0.9rem; margin-top:8px; font-style:italic;">
+                            Your Answer: {{ item.answer }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <a href="/?tab=interview" class="btn-home">Return to Dashboard</a>
+    </div>
+
+    <!-- Chart Setup Script -->
+    {% if record.report %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('overallChart').getContext('2d');
+            var score = {{ record.report.overall_score }};
+            var color = score >= 80 ? '#10b981' : (score >= 60 ? '#fbbf24' : '#ef4444');
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [score, 100 - score],
+                        backgroundColor: [color, 'var(--border-light)'],
+                        borderWidth: 0,
+                        cutout: '80%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { tooltip: { enabled: false } },
+                    animation: { animateRotate: true, animateScale: true }
+                }
+            });
+        });
+    </script>
+    {% endif %}
+
+    <script src="/static/theme.js"></script>
+</body>
+</html>

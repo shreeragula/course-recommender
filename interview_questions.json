@@ -1,0 +1,258 @@
+[
+  {
+    "id": 1,
+    "role": "AI Engineer",
+    "topic": "Python",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "Explain how list comprehensions work in Python and write a simple example that squares only even numbers from a list."
+  },
+  {
+    "id": 2,
+    "role": "AI Engineer",
+    "topic": "Machine Learning",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the difference between overfitting and underfitting. What are three common regularization techniques used to prevent overfitting?"
+  },
+  {
+    "id": 3,
+    "role": "AI Engineer",
+    "topic": "Deep Learning",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "Explain the mechanics of a self-attention layer in a Transformer model. How do Query, Key, and Value matrices interact to calculate attention weights?"
+  },
+  {
+    "id": 4,
+    "role": "AI Engineer",
+    "topic": "HR",
+    "difficulty": "Medium",
+    "type": "Behavioral",
+    "question": "Describe a time when you had to optimize or debug a machine learning model that was performing poorly in production. How did you diagnose the issue?"
+  },
+  {
+    "id": 5,
+    "role": "Data Analyst",
+    "topic": "Excel",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What is a Pivot Table in Excel, and how would you use it to summarize sales data by product category and region?"
+  },
+  {
+    "id": 6,
+    "role": "Data Analyst",
+    "topic": "SQL",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the difference between INNER JOIN, LEFT JOIN, and RIGHT JOIN in SQL. When would you use a LEFT JOIN instead of an INNER JOIN?"
+  },
+  {
+    "id": 7,
+    "role": "Data Analyst",
+    "topic": "Statistics",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "What is A/B testing? Explain the roles of the null hypothesis, p-value, and statistical power when analyzing test results."
+  },
+  {
+    "id": 8,
+    "role": "Data Analyst",
+    "topic": "HR",
+    "difficulty": "Easy",
+    "type": "Behavioral",
+    "question": "How do you explain complex technical insights or data findings to stakeholders who do not have a technical background?"
+  },
+  {
+    "id": 9,
+    "role": "Data Scientist",
+    "topic": "Python",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What are the differences between a list and a tuple in Python, and in what scenarios would you choose a tuple over a list?"
+  },
+  {
+    "id": 10,
+    "role": "Data Scientist",
+    "topic": "Statistics",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the concept of Central Limit Theorem (CLT) and why it is foundational to statistical inference and hypothesis testing."
+  },
+  {
+    "id": 11,
+    "role": "Data Scientist",
+    "topic": "Machine Learning",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "What is the curse of dimensionality? How does dimensionality affect distance-based algorithms, and what are two methods to mitigate it?"
+  },
+  {
+    "id": 12,
+    "role": "Data Scientist",
+    "topic": "HR",
+    "difficulty": "Medium",
+    "type": "Behavioral",
+    "question": "Describe a scenario where your machine learning model metrics (accuracy, recall) were excellent but the business results did not improve. How did you address this?"
+  },
+  {
+    "id": 13,
+    "role": "ML Engineer",
+    "topic": "Python",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What are generators in Python, and how do they help with memory efficiency when processing large datasets?"
+  },
+  {
+    "id": 14,
+    "role": "ML Engineer",
+    "topic": "MLOps",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "What is data drift and concept drift in machine learning production systems? How would you design a monitoring pipeline to detect them?"
+  },
+  {
+    "id": 15,
+    "role": "ML Engineer",
+    "topic": "Docker",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "Explain how you would deploy a PyTorch model into production using a containerized Triton Inference Server. How does dynamic batching improve throughput?"
+  },
+  {
+    "id": 16,
+    "role": "ML Engineer",
+    "topic": "HR",
+    "difficulty": "Medium",
+    "type": "Behavioral",
+    "question": "Describe a situation where you had to collaborate closely with data scientists to transition code from a Jupyter Notebook to a production repository. What challenges did you face?"
+  },
+  {
+    "id": 17,
+    "role": "Full Stack Developer",
+    "topic": "HTML/CSS",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What is the CSS Box Model? Explain the roles of margin, border, padding, and content."
+  },
+  {
+    "id": 18,
+    "role": "Full Stack Developer",
+    "topic": "JavaScript",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the event loop in JavaScript. How does it handle asynchronous operations, microtasks, and macrotasks?"
+  },
+  {
+    "id": 19,
+    "role": "Full Stack Developer",
+    "topic": "Node.js",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "Explain the difference between JWT sessions and cookie sessions. How do you implement robust security measures to prevent XSS and CSRF attacks?"
+  },
+  {
+    "id": 20,
+    "role": "Full Stack Developer",
+    "topic": "HR",
+    "difficulty": "Easy",
+    "type": "Behavioral",
+    "question": "How do you prioritize features and handle tight deadlines when building a web application with competing requirements?"
+  },
+  {
+    "id": 21,
+    "role": "Backend Developer",
+    "topic": "SQL",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What is database normalization, and what are the main differences between First Normal Form (1NF) and Second Normal Form (2NF)?"
+  },
+  {
+    "id": 22,
+    "role": "Backend Developer",
+    "topic": "APIs",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "What are RESTful APIs? Explain the idempotent nature of GET, PUT, and DELETE methods vs POST."
+  },
+  {
+    "id": 23,
+    "role": "Backend Developer",
+    "topic": "System Design",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "How does horizontal database scaling differ from vertical database scaling? Explain sharding, replication lags, and consistency models (e.g., CAP Theorem)."
+  },
+  {
+    "id": 24,
+    "role": "Backend Developer",
+    "topic": "HR",
+    "difficulty": "Medium",
+    "type": "Behavioral",
+    "question": "Tell me about a time you designed an API endpoint that suffered from performance bottlenecks. How did you locate and resolve the issue?"
+  },
+  {
+    "id": 25,
+    "role": "Cloud Engineer",
+    "topic": "Linux",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What is SSH, and how do you configure passwordless SSH access to remote servers using public-private keypairs?"
+  },
+  {
+    "id": 26,
+    "role": "Cloud Engineer",
+    "topic": "Terraform",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the purpose of the Terraform state file (`terraform.tfstate`). How do you manage collaborative environments to prevent state locks?"
+  },
+  {
+    "id": 27,
+    "role": "Cloud Engineer",
+    "topic": "Kubernetes",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "Explain Kubernetes Pod scheduling. How do node taints, tolerations, and affinity rules influence where a pod gets deployed?"
+  },
+  {
+    "id": 28,
+    "role": "Cloud Engineer",
+    "topic": "HR",
+    "difficulty": "Medium",
+    "type": "Behavioral",
+    "question": "Describe a major cloud infrastructure outage you experienced. What were the root causes, and how did you participate in restoring service?"
+  },
+  {
+    "id": 29,
+    "role": "Cyber Security Analyst",
+    "topic": "Networking",
+    "difficulty": "Easy",
+    "type": "Technical",
+    "question": "What is the difference between TCP and UDP protocols, and in what use cases would you choose UDP?"
+  },
+  {
+    "id": 30,
+    "role": "Cyber Security Analyst",
+    "topic": "Cryptography",
+    "difficulty": "Medium",
+    "type": "Technical",
+    "question": "Explain the differences between symmetric and asymmetric encryption. What are standard algorithms associated with both?"
+  },
+  {
+    "id": 31,
+    "role": "Cyber Security Analyst",
+    "topic": "Threat Hunting",
+    "difficulty": "Hard",
+    "type": "Technical",
+    "question": "What is a SQL injection attack, and how do you use prepared statements (parameterization) and input validation to completely eliminate this vulnerability?"
+  },
+  {
+    "id": 32,
+    "role": "Cyber Security Analyst",
+    "topic": "HR",
+    "difficulty": "Easy",
+    "type": "Behavioral",
+    "question": "How do you stay up-to-date with emerging zero-day vulnerabilities and ensure your organization patches endpoints proactively?"
+  }
+]

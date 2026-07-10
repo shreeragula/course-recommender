@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Simulation - CareerPath AI</title>
+    <!-- Import Google Fonts (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #10b981;
+            --bg-dark: var(--bg-dark-base);
+            --card-bg: rgba(17, 24, 39, 0.45);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: var(--text-primary);
+            --text-muted: var(--text-secondary);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at 50% 50%, var(--bg-grad-start) 0%, var(--bg-dark-base) 90%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            background: var(--card-bg-base);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        header {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .session-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .session-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .session-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-quit {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-quit:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--text-bright);
+            border-color: #ef4444;
+        }
+
+        /* Progress Bar */
+        .interview-progress {
+            height: 6px;
+            background: var(--border-lighter);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .interview-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Question Card */
+        .question-card-display {
+            background: var(--card-hover);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .question-category {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            line-height: 1.5;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .answer-textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            background: rgba(17, 24, 39, 0.4);
+            border: 1px solid var(--border-lighter);
+            border-radius: 12px;
+            color: var(--text-bright);
+            outline: none;
+            resize: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .answer-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
+            background: rgba(17, 24, 39, 0.6);
+        }
+
+        .actions-row {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 14px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+
+        button:disabled {
+            background: var(--border-lighter);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.25);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        button.btn-submit {
+            background: linear-gradient(135deg, var(--accent), #059669);
+        }
+
+        button.btn-submit:hover:not(:disabled) {
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+    </style>
+    <link rel="stylesheet" href="/static/theme.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="session-info">
+                <span class="session-title">{{ role }} Simulation</span>
+                <span class="session-meta">Type: {{ type }} | Difficulty: {{ difficulty }}</span>
+            </div>
+            <a href="/" class="btn-quit" onclick="return confirm('Are you sure you want to quit the current interview? Your progress will not be saved.');">Quit Interview</a>
+        </header>
+
+        <!-- Progress bar -->
+        <div class="interview-progress">
+            <div class="interview-progress-bar" style="width: {{ progress_pct }}%;"></div>
+        </div>
+
+        <div class="question-card-display">
+            <div class="question-category">
+                Question {{ current_num }} of {{ total_num }} &bull; {{ active_q.topic }}
+            </div>
+            <p class="question-text">{{ active_q.question }}</p>
+        </div>
+
+        <form action="/interview/submit_answer" method="post">
+            <div class="form-group">
+                <label for="answer">Your Typed Response</label>
+                <textarea class="answer-textarea" id="answer" name="answer" placeholder="Type your answer here to unlock the next question..." required></textarea>
+            </div>
+
+            <div class="actions-row">
+                {% if is_last %}
+                    <button type="submit" class="btn-submit" id="btn_submit" disabled>Finish & Review Summary</button>
+                {% else %}
+                    <button type="submit" id="btn_submit" disabled>Submit & Next Question</button>
+                {% endif %}
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        const textarea = document.getElementById('answer');
+        const submitBtn = document.getElementById('btn_submit');
+
+        // Validation: Disable Next/Submit until an answer is submitted (typed)
+        textarea.addEventListener('input', () => {
+            if (textarea.value.trim().length > 0) {
+                submitBtn.removeAttribute('disabled');
+            } else {
+                submitBtn.setAttribute('disabled', 'true');
+            }
+        });
+    </script>
+    <script src="/static/theme.js"></script>
+</body>
+</html>

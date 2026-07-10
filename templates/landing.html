@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath AI - Personalized Career Mentoring</title>
+    <!-- Import Google Fonts (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/theme.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #10b981;
+            --bg-dark: #090d16;
+            --card-bg: rgba(17, 24, 39, 0.45);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at 50% 50%, #161538 0%, #090d16 90%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header Style */
+        .landing-header {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-signin {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-signin:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-signup {
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-signup:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            flex-grow: 1;
+            max-width: 1000px;
+            margin: 60px auto 40px auto;
+            text-align: center;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .badge-hero {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #fff 30%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 12px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* Footer Section */
+        .landing-footer {
+            border-top: 1px solid var(--card-border);
+            background: rgba(9, 13, 22, 0.6);
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .footer-logo .logo-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="landing-header">
+        <a href="/" class="logo">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">CareerPath AI</div>
+        <nav class="nav-links">
+            <a href="#features" class="nav-link">Features</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="/login" class="btn-signin">Sign In</a>
+            <a href="/signup" class="btn-signup">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section class="hero-section">
+        <div class="badge-hero">AI Career Advisory Suite</div>
+        <h1 class="hero-title">Navigate Your Career Goal With <span>AI Mastery</span></h1>
+        <p class="hero-subtitle">Discover personalized course recommendations, build structured AI learning paths, simulate interviews with smart conversational feedback, and keep track of your tasks inside one integrated workspace.</p>
+        <div class="hero-actions">
+            <a href="/signup" class="btn-hero-primary">Create Free Account</a>
+            <a href="#features" class="btn-hero-secondary">Explore Features</a>
+        </div>
+    </section>
+
+    <!-- Features Showcase Grid -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Designed for Accelerated Learning</h2>
+            <p class="section-desc">Experience an intelligent set of tools designed to advance your skillset.</p>
+        </div>
+        <div class="features-grid">
+            
+            <!-- Feature 1: Recommendations -->
+            <div class="feature-card">
+                <div class="feature-icon" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.2);">🔍</div>
+                <div class="feature-info">
+                    <h3 class="feature-title">Course Recommendations</h3>
+                    <p class="feature-desc">Dynamic personalized search matched specifically to your target topics, weekly hour limits, and career aspirations.</p>
+                </div>
+            </div>
+
+            <!-- Feature 2: Roadmaps -->
+            <div class="feature-card">
+                <div class="feature-icon" style="color: #34d399; border-color: rgba(52, 211, 153, 0.2);">🚀</div>
+                <div class="feature-info">
+                    <h3 class="feature-title">AI Career Paths</h3>
+                    <p class="feature-desc">Instantly build tailored study roadmap breakdowns pointing you towards structured conceptual steps and career progress milestones.</p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Interviews -->
+            <div class="feature-card">
+                <div class="feature-icon" style="color: #f472b6; border-color: rgba(244, 114, 182, 0.2);">💡</div>
+                <div class="feature-info">
+                    <h3 class="feature-title">Interview Prep Console</h3>
+                    <p class="feature-desc">Participate in realistic Technical, behavioral, or mixed interview sessions powered by Gemini 2.5 Flash with live conversational follow-ups.</p>
+                </div>
+            </div>
+
+            <!-- Feature 4: Planner -->
+            <div class="feature-card">
+                <div class="feature-icon" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.2);">📅</div>
+                <div class="feature-info">
+                    <h3 class="feature-title">Study Planner Workspace</h3>
+                    <p class="feature-desc">Stay on track with robust task list categories, custom calendar overlays, weekly study timetables, and streaks tracking.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <div class="footer-content">
+            <a href="/" class="footer-logo">
+                <div class="logo-icon">C</div>
+                <span>CareerPath AI</span>
+            </a>
+            <p>&copy; 2026 CareerPath AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/theme.js"></script>
+</body>
+</html>
